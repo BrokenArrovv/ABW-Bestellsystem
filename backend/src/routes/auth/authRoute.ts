@@ -118,18 +118,18 @@ router.post(
     );
 
     if (!user) {
-      authRouteLogger.error('UserID not found');
-      return res.status(404).jsonp({
-        access: true,
-        error: 'UserID not found',
-        res: 'UserID not found',
+      authRouteLogger.error(`UserID ${req.body.username} not found`);
+      return res.status(401).jsonp({
+        access: false,
+        error: 'Authentication failed',
+        res: 'Authentication failed',
       });
     }
 
     if (user.new) {
       authRouteLogger.debug(`login failed: Account ${user._id} not activated`);
       return res.status(403).json({
-        access: true,
+        access: false,
         error: 'Account not activated',
         res: 'Account not activated',
       });
@@ -141,10 +141,10 @@ router.post(
       authRouteLogger.debug(
         `${req.ip} got wrong credentials for user ${req.body.username}`
       );
-      return res.status(400).jsonp({
-        access: true,
-        error: 'wrong credentials',
-        res: 'wrong credentials',
+      return res.status(401).jsonp({
+        access: false,
+        error: 'Authentication failed',
+        res: 'Authentication failed',
       });
     }
 
