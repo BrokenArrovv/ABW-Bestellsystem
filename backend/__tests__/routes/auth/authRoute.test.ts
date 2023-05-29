@@ -41,7 +41,7 @@ describe('Auth routes', () => {
   describe('POST /auth/login', () => {
     it('should return a token if the credentials are correct', async () => {
       const res = await request(app)
-        .post('/auth/userlogin')
+        .post('/auth/login')
         .send({ username: user.username, password: user.password })
         .expect(200);
 
@@ -50,7 +50,7 @@ describe('Auth routes', () => {
 
     it('should return an error if the username is incorrect', async () => {
       const res = await request(app)
-        .post('/auth/userlogin')
+        .post('/auth/login')
         .send({ username: 'nonexistent', password: 'password' })
         .expect(401);
 
@@ -60,7 +60,7 @@ describe('Auth routes', () => {
 
     it('should return an error if the password is incorrect', async () => {
       const res = await request(app)
-        .post('/auth/userlogin')
+        .post('/auth/login')
         .send({ username: user.username, password: 'wrongpassword' })
         .expect(401);
 
