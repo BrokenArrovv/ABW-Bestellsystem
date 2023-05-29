@@ -1,4 +1,4 @@
-import EditorModel, { IEditorSchema, Tokens } from './src/models/editorModel';
+import EditorModel, { IEditorSchema, Tokens } from './src/models/environmentModel';
 import { randomBytes } from 'crypto';
 import UserModel from './src/models/userModel';
 import { Response } from 'express';
